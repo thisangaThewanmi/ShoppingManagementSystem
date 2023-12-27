@@ -16,7 +16,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
 
     static List<Clothing> clothing = new ArrayList<Clothing>();
 
-    List product_Array = new ArrayList<>();
+    static List <Product>product_Array = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
         WestMinisterShoppingManger WSMS = new WestMinisterShoppingManger();
 
         System.out.println("electronicsArray :" + electronics.size());
-        System.out.println("productArray :" + WSMS.product_Array.size());
+        System.out.println("productArray :" + product_Array.size());
 
         boolean flag = true;
 
@@ -90,7 +90,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
 
         if (product_Array.size() < 50) {
             System.out.println("\n==========================================================================================================================");
-            System.out.println("|                                        Add a product                      version 1.0                                      |");
+            System.out.println("|                                        Add a product                                                        |");
             System.out.println("=============================================================================================================================");
             System.out.println("|                                                                                                                           |");
             System.out.println("|                                        1).  Electronics                                                                   |");
@@ -162,6 +162,8 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 if (confirm == 'Y' || confirm == 'y') {
 
                     clothing.add(new Clothing(id, name, availableNo, price, size, colour));
+                    product_Array.add(new Clothing(id, name, availableNo, price, size, colour));
+
                     System.out.println("Product added successfully");
 
                 }
@@ -169,6 +171,8 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                     System.out.println("Ok try another time");
 
                 }
+
+                    System.out.println();
 
                     System.out.println("Do you want to add another Product(Y/N)?");
                     char ch = scanner.next().charAt(0);
@@ -236,6 +240,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 if (confirm == 'Y' || confirm == 'y') {
 
                     electronics.add(new Electronics(id, name, availableNo, price, brand, warrenty));
+                    product_Array.add(new Electronics(id, name, availableNo, price, brand, warrenty));
                     System.out.println("Product added successfully");
 
 
@@ -258,7 +263,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 }
 
                 if (ch == 'N' || ch == 'n') {
-                    product_Array.add(electronics);
+
                     addProduct();
                     break;
 
@@ -274,7 +279,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
     public void deleteProduct() {
 
         System.out.println("\n======================================================================");
-        System.out.println("|                           Delete a Product                         |");
+        System.out.println("|                           Delete a Product                           |");
         System.out.println("======================================================================\n");
         System.out.println("|                               1).  Electronics                      |");
         System.out.println("|                               2).  Clothing                         |");
@@ -320,6 +325,13 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 System.out.println("Colour            : " + clothing.get(x).getColour());
 
                 clothing.remove(x);
+
+                for(int i=0;i<product_Array.size();i++){
+                    if(DeleteProd.equals(product_Array.get(i).getProductId())){
+                        product_Array.remove(i);
+                    }
+                }
+
                 if (clothing.size() == 1) {
                     System.out.println();
                     System.out.println();
@@ -391,20 +403,29 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 System.out.println("Warrenty            : " + electronics.get(x).getWarranty());
 
                 electronics.remove(x);
+
+                for(int i=0;i<product_Array.size();i++){
+                    if(DeleteProd.equals(product_Array.get(i).getProductId())){
+                        product_Array.remove(i);
+                    }
+                }
+
+
+
                 if (electronics.size() == 1) {
                     System.out.println();
                     System.out.println();
                     System.out.println("\n\n======================================================================");
                     System.out.println("|              Successfully Removed the Product                           |");
                     System.out.println("==========================================================================\n");
-                    System.out.println("---------------There is One Electronic Product Remaining on the List--------------");
+                    System.out.println("---------------There is One Electronic Product Remaining on the List-------");
                     System.out.println();
                     System.out.println();
                     System.out.println();
                     System.out.println("\n\n======================================================================");
                     System.out.println("|                              Total Products                             |");
                     System.out.println("=========================================================================\n");
-                    System.out.println("There are " + product_Array.size() + " Clothing Products Now ");
+                    System.out.println("There are " + product_Array.size() + "  Products Now ");
 
 
                 } else if (electronics.size() > 1) {
@@ -420,7 +441,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                     System.out.println("\n\n======================================================================");
                     System.out.println("|                              Total Products                             |");
                     System.out.println("=========================================================================\n");
-                    System.out.println("There are " + product_Array.size() + " Clothing Products Now ");
+                    System.out.println("There are " + product_Array.size() + "  Products Now ");
 
 
                 } else {
@@ -430,7 +451,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                     System.out.println("|             Successfully Removed the Product                            |");
                     System.out.println("==========================================================================\n");
                     System.out.println();
-                    System.out.println("------------------No Electronic Products Available At the Moment-----------");
+                    System.out.println("----------------No Electronic Products Available At the Moment-----------");
                     System.out.println();
                     System.out.println();
                     System.out.println();
@@ -448,6 +469,12 @@ public class WestMinisterShoppingManger implements ShoppingManger {
 
     @Override
     public void print_product_list() {
+
+
+        System.out.println("Total amount of clothes : " + clothing.size());
+        System.out.println("Total amount of electronics : " + electronics.size());
+        System.out.println("Total amount of products : " + product_Array.size());
+        System.out.println();
 
 
         System.out.println("\n======================================================================");
