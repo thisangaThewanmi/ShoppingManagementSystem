@@ -581,19 +581,46 @@ public class WestMinisterShoppingManger implements ShoppingManger {
         switch (choice) {
             case 1:
                 saveElectronicFile();
-                readFile();
-                loadFile();
+                readFileElectronic();
+                Save_in_a_file();
                 break;
             case 2:
-                //saveClothingFile();
+                saveClothingFile();
+                readFileClothing();
+                Save_in_a_file();
                 break;
             case 3:
-                Save_in_a_file();
+                mainMenu();
                 break;
             default:
                 System.out.println("Invalid Choice");
         }
 
+    }
+
+    private void saveClothingFile() {
+        try {
+            BufferedWriter TextFILE = new BufferedWriter(new FileWriter("Clothing Product List.txt"));
+            for (Clothing clothing1 : clothing) {
+                TextFILE.write(clothing1.getProductId() + "\n" + clothing1.getProductName() + "\n" + clothing1.getAvailabaleNo() + "\n" + clothing1.getSize() + "\n" + clothing1.getColour()+  "\n\n");
+            }
+            System.out.println("Successfully Saved Data to the File...");
+            TextFILE.close();
+        }catch (IOException e) {
+            System.out.println("Error....");
+        }
+    }
+
+    public void readFileClothing() {
+        try {
+            String RFL;
+            BufferedReader reader = new BufferedReader(new FileReader("Clothing Product List.txt"));
+            while ((RFL = reader.readLine()) != null) {
+                System.out.println(RFL);
+            }reader.close();
+        }catch (IOException e) {
+            System.out.println("Error....");
+        }
     }
 
 
@@ -610,7 +637,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
         }
     }
 
-    public void readFile() {
+    public void readFileElectronic() {
         try {
             String RFL;
             BufferedReader reader = new BufferedReader(new FileReader("Electronic Product List.txt"));
@@ -622,7 +649,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
         }
     }
 
-    public void loadFile() {
+   /* public void loadFile() {
         try {
             String LDdetails;
             ArrayList<String> LDarray = new ArrayList<>();
@@ -641,7 +668,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 }else {
                     if (electronics.size() <= 10) {
                         boolean read = true;
-                        for (int y = 0; y <= (LDarray.size() / 6); y++) {
+                        for (int y = 0; y <= LDarray.size() ; y++) {
                             for (Electronics electronics : electronics) {
                                 if (electronics.getProductId().equals(LDarray.get(0))) {
                                     read = false;
@@ -665,7 +692,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
         }catch (IOException e) {
             System.out.println("No Data Found....");
         }
-    }
+    }*/
 }
 
 
