@@ -47,8 +47,8 @@ public class WestMinisterShoppingManger implements ShoppingManger {
             System.out.println("|                                        2). Delete a Procuct                                                                |");
             System.out.println("|                                        3). Print the List of Products.                                                     |");
             System.out.println("|                                        4). Save in a File                                                                  |");
-            System.out.println("|                                        7). Open GUI.                                                                       |");
-            System.out.println("|                                        8). Exit.                                                                           |");
+            System.out.println("|                                        5). Open GUI.                                                                       |");
+            System.out.println("|                                        6). Exit.                                                                           |");
             System.out.println("|                                                                                                                            |");
             System.out.println("==============================================================================================================================");
             System.out.print("\nEnter Your Option :  ");
