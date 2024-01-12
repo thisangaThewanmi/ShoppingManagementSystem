@@ -125,20 +125,11 @@ public class WestMinisterShoppingManger implements ShoppingManger {
 
     }
 
-    private void addClothing() {
+   /* private void addClothing() {
 
         while (true) {
             System.out.println("Add  a Clothing Product");
-      /*  System.out.print("Enter Product Id : " );
-        String id = scanner.next();
 
-        for (Electronics elec: electronics) {
-            if(elec.getProductId().equals(id)) {
-                System.out.println("Product Id already exists try adding a new Id");
-                addElectronic();
-            }
-
-        }*/
 
             System.out.println("Enter Product Id :  C00" + (clothing.size() + 1));
             String id = ("C00" + (clothing.size() + 1));
@@ -200,14 +191,124 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 System.out.println("Invalid input");
             }
         }
-    }
+    }*/ //origibal codee
 
-    private void addElectronic() {
+    private void addClothing() {
+    while (true) {
+        System.out.println("Add a Clothing Product");
+
+        // Input for Product Id
+        System.out.println("Enter Product Id :  C00" + (clothing.size() + 1));
+        String id = ("C00" + (clothing.size() + 1));
+
+        // Validate Product Id
+        if (!Regex.isTextFieldValid(TextFeilds.CLOTHING_ID, id)) {
+            System.out.println("Invalid Product Id. Please enter a valid Clothing Id.");
+            System.out.println();
+
+            continue; // Restart the loop
+        }
+
+        // Input for Product Name
+        System.out.print("Enter Product Name : ");
+        String name = scanner.next();
+
+        // Validate Product Name
+        if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, name)) {
+            System.out.println("Invalid Product Name. Please enter a valid string with 50 letters.");
+            System.out.println();
+
+            continue; // Restart the loop
+        }
+
+        // Input for Available No
+        System.out.print("Enter Available No : ");
+        String availableNo = scanner.next();
+
+        // Validate Available No
+        if (!Regex.isTextFieldValid(TextFeilds.NUMBERS, availableNo)) {
+            System.out.println("Invalid Available No. Please enter a valid INT .");
+            System.out.println();
+            continue; // Restart the loop
+        }
+
+        // Input for Price
+        System.out.print("Enter Price : $");
+        Double price;
+
+        // Validate Price
+        do {
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Invalid input. Please enter a valid decimal number.");
+                System.out.print("Please try again: ");
+                System.out.println();
+
+                scanner.next(); // Consume the invalid input
+            }
+            price = scanner.nextDouble();
+            if (!Regex.isTextFieldValid(TextFeilds.PRICE, String.valueOf(price))) {
+                System.out.println("Invalid Price. Please enter a valid price.");
+                System.out.print("Please try again: ");
+                System.out.println();
+
+            }
+        } while (!Regex.isTextFieldValid(TextFeilds.PRICE, String.valueOf(price)));
+
+        // Input for Size
+        System.out.print("Enter size:");
+        String size = scanner.next();
+
+        // Validate Size
+        if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, size)) {
+            System.out.println("Invalid Size. Please enter a valid string .");
+            continue; // Restart the loop
+        }
+
+        // Input for Colour
+        System.out.print("Enter colour:");
+        String colour = scanner.next();
+
+        // Validate Colour
+        if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, colour)) {
+            System.out.println("Invalid Colour. Please enter a valid string .");
+            continue; // Restart the loop
+        }
+
+        System.out.print("Do you want to save this product (Y/N):");
+        char confirm = scanner.next().charAt(0);
+
+        if (confirm == 'Y' || confirm == 'y') {
+            // Add the product to your list
+            clothing.add(new Clothing(id, name, availableNo, price, size, colour));
+            product_Array.add(new Clothing(id, name, availableNo, price, size, colour));
+            System.out.println("Product added successfully");
+        } else if (confirm == 'N' || confirm == 'n') {
+            System.out.println("Ok, try another time");
+        } else {
+            System.out.println("Invalid input");
+            continue; // Restart the loop
+        }
+
+        System.out.println("Do you want to add another Product (Y/N)?");
+        char ch = scanner.next().charAt(0);
+        System.out.println();
+
+        if (ch == 'N' || ch == 'n') {
+            addProduct();
+            break; // Exit the loop
+        } else if (ch != 'Y' && ch != 'y') {
+            System.out.println("Invalid input");
+        }
+    }
+}
+
+
+   /* private void addElectronic() {
 
 
         while (true) {
             System.out.println("Add  a Electronic Product");
-      /*  System.out.print("Enter Product Id : " );
+             *//*  System.out.print("Enter Product Id : " );
         String id = scanner.next();
 
         for (Electronics elec: electronics) {
@@ -216,7 +317,7 @@ public class WestMinisterShoppingManger implements ShoppingManger {
                 addElectronic();
             }
 
-        }*/
+        }*//*
 
             System.out.println("Enter Product Id :  P00" + (electronics.size() + 1));
             String id = ("P00" + (electronics.size() + 1));
@@ -273,9 +374,112 @@ public class WestMinisterShoppingManger implements ShoppingManger {
             }
         }
     }
+*/ //original codee
 
 
-    @Override
+            private void addElectronic () {
+                while (true) {
+                    System.out.println("Add an Electronic Product");
+
+                    // Input for Product Id
+                    System.out.println("Enter Product Id :  P00" + (electronics.size() + 1));
+                    String id = ("P00" + (electronics.size() + 1));
+
+                    // Validate Product Id
+                    if (!Regex.isTextFieldValid(TextFeilds.ELECTRONIC_ID, id)) {
+                        System.out.println("Invalid Product Id. Please enter a valid Electronic Id.");
+                        continue; // Restart the loop
+                    }
+
+                    // Input for Product Name
+                    System.out.print("Enter Product Name : ");
+                    String name = scanner.next();
+
+                    // Validate Product Name
+                    if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, name)) {
+                        System.out.println("Invalid Product Name. Please enter a valid string .");
+                        continue; // Restart the loop
+                    }
+
+                    // Input for Available No
+                    System.out.print("Enter Available No : ");
+                    String availableNo = scanner.next();
+
+                    // Validate Available No
+                    if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, availableNo)) {
+                        System.out.println("Invalid Available No. Please enter a valid string .");
+                        continue; // Restart the loop
+                    }
+
+                    // Input for Price
+                    System.out.print("Enter Price : Rs.");
+                    Double price;
+
+                    // Validate Price
+                    do {
+                        while (!scanner.hasNextDouble()) {
+                            System.out.println("Invalid input. Please enter a valid decimal number.");
+                            System.out.print("Please try again: ");
+                            scanner.next(); // Consume the invalid input
+                        }
+                        price = scanner.nextDouble();
+                        if (!Regex.isTextFieldValid(TextFeilds.PRICE, String.valueOf(price))) {
+                            System.out.println("Invalid Price. Please enter a valid price.");
+                            System.out.print("Please try again: ");
+                        }
+                    } while (!Regex.isTextFieldValid(TextFeilds.PRICE, String.valueOf(price)));
+
+                    // Input for Brand
+                    System.out.print("Enter the brand:");
+                    String brand = scanner.next();
+
+                    // Validate Brand
+                    if (!Regex.isTextFieldValid(TextFeilds.STRING_VALUES, brand)) {
+                        System.out.println("Invalid Brand. Please enter a valid string .");
+                        continue; // Restart the loop
+                    }
+
+                    // Input for Warranty Period
+                    System.out.print("Enter warranty period:");
+                    String warranty = scanner.next();
+
+                    // Validate Warranty Period
+                    if (!Regex.isTextFieldValid(TextFeilds.WARRENTY, warranty)) {
+                        System.out.println("Invalid Warranty Period. Please enter a valid number.");
+                        continue; // Restart the loop
+                    }
+
+                    System.out.print("Do you want to save this product (Y/N):");
+                    char confirm = scanner.next().charAt(0);
+
+                    if (confirm == 'Y' || confirm == 'y') {
+                        // Add the product to your list
+                        electronics.add(new Electronics(id, name, availableNo, price, brand, warranty));
+                        product_Array.add(new Electronics(id, name, availableNo, price, brand, warranty));
+                        System.out.println("Product added successfully");
+                    } else if (confirm == 'N' || confirm == 'n') {
+                        System.out.println("Ok, try another time");
+                    } else {
+                        System.out.println("Invalid input");
+                        continue; // Restart the loop
+                    }
+
+                    System.out.println("Do you want to add another Product (Y/N)?");
+                    char ch = scanner.next().charAt(0);
+                    System.out.println();
+
+                    if (ch == 'N' || ch == 'n') {
+                        addProduct();
+                        break; // Exit the loop
+                    } else if (ch != 'Y' && ch != 'y') {
+                        System.out.println("Invalid input");
+                    }
+                }
+            }
+
+
+
+            @Override
     public void deleteProduct() {
 
         System.out.println("\n======================================================================");

@@ -1,0 +1,7 @@
+public enum TextFeilds {
+
+
+        ELECTRONIC_ID,CLOTHING_ID,STRING_VALUES,NUMBERS,PRICE,WARRENTY;
+
+
+}
